@@ -21,7 +21,13 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'm_user_role_tabs_id'
     ];
+
+    public function roles()
+    {
+        return $this->hasOne(MUserRoleTab::class, 'id', 'm_user_role_tabs_id');
+    }
 
     /**
      * The attributes that should be hidden for serialization.

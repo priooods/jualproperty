@@ -13,13 +13,17 @@ return new class extends Migration
     {
         Schema::create('t_kavling_tabs', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('m_status_tabs_id');
-            $table->unsignedInteger('m_type_kavling_tabs_id');
+            $table->unsignedInteger('m_status_tabs_id')->default(1)->nullable();
+            $table->unsignedInteger('m_status_tabs_transaction_id')->default(5)->nullable();
+            $table->unsignedInteger('m_type_kavling_tabs_id')->nullable();
             $table->string('title');
             $table->integer('size');
             $table->string('price');
             $table->string('address');
             $table->timestamps();
+            $table->foreign('m_status_tabs_transaction_id')->references('id')->on('m_status_tabs');
+            $table->foreign('m_status_tabs_id')->references('id')->on('m_status_tabs');
+            $table->foreign('m_type_kavling_tabs_id')->references('id')->on('m_type_kavling_tabs');
         });
     }
 

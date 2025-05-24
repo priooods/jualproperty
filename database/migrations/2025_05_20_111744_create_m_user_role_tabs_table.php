@@ -15,6 +15,14 @@ return new class extends Migration
             $table->integerIncrements('id');
             $table->string('title');
         });
+
+        DB::table('m_user_role_tabs')->insert(
+            array(
+                ['title' => 'SuperAdmin'],
+                ['title' => 'Admin'],
+                ['title' => 'Marketing'],
+            )
+        );
     }
 
     /**

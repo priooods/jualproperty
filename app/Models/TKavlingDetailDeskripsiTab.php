@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class MUserRoleTab extends Model
+class TKavlingDetailDeskripsiTab extends Model
 {
     public $timestamps = false;
     protected $fillable = [
-        'title',
+        't_kavling_tabs_id',
+        'description'
     ];
 }

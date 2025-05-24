@@ -6,5 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class MTypeKavlingTab extends Model
 {
-    //
+    public $timestamps = false;
+    protected $fillable = [
+        'title',
+    ];
 }
