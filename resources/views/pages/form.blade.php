@@ -64,10 +64,10 @@
                     </div>
                     <div class="grid grid-cols-2 py-3 border-b border-gray-300">
                         <p class="my-auto text-sm">Nama Agent</p>
-                        <select name="nama_agen" class="w-full border rounded-md p-2 bg-gray-100">
-                            <option value="" disabled selected {{ old('nama_agen') ? '' : 'selected' }}>Pilih Agent</option>
+                        <select name="agent_id" class="w-full border rounded-md p-2 bg-gray-100">
+                            <option value="" disabled selected {{ old('agent_id') ? '' : 'selected' }}>Pilih Agent</option>
                             @foreach($agent as $agen)
-                                <option value="{{ $agen->id }}" {{ old('nama_agen') == $agen->id ? 'selected' : '' }}>{{ $agen->name }}</option>
+                                <option value="{{ $agen->id }}" {{ old('agent_id') == $agen->id ? 'selected' : '' }}>{{ $agen->name }}</option>
                             @endforeach
                         </select>
                     </div>

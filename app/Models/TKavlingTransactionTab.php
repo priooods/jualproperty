@@ -14,6 +14,8 @@ class TKavlingTransactionTab extends Model
         'nomor_kk',
         'nomor_hp',
         'email',
+        'agent_id',
+        'payment',
         'upload_ktp',
         't_kavling_tabs_id',
     ];

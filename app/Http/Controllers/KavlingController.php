@@ -71,7 +71,7 @@ class KavlingController extends Controller
             $orderId = 'ORDER-' . uniqid();
             $params = [
                 'transaction_details' => [
-                    'order_id' => 'ORDER-' . uniqid(),
+                    'order_id' => $orderId,
                     'gross_amount' => $request->down_payment,
                 ],
                 'customer_details' => [
@@ -88,6 +88,9 @@ class KavlingController extends Controller
                 'nomor_hp' => $request->nomor_hp,
                 'email' => $request->email,
                 'upload_ktp' => $request->nomor_hp,
+                'payment' => $request->down_payment,
+                'payment' => $request->down_payment,
+                'agent_id' => isset($request->agent_id) ? $request->agent_id : null,
                 't_kavling_tabs_id' => $id,
             ]);
             DB::commit();
@@ -101,8 +104,38 @@ class KavlingController extends Controller
     }
 
     public function callback(Request $request){
-        dd($request->all());
-        return response()->json($request->all());
+        try {
+            DB::beginTransaction();
+            switch ($request->transaction_status) {
+                case 'capture':
+                case 'settlement':
+                    TKavlingTransactionTab::where('order_id', $request->order_id)->update([
+                        'm_status_id' => 8
+                    ]);
+                    DB::commit();
+                    return view('invoice.success');
+                    break;
+                case 'deny':
+                case 'cancel':
+                case 'expire':
+                case 'failure':
+                    TKavlingTransactionTab::where('order_id', $request->order_id)->update([
+                        'm_status_id' => 9
+                    ]);
+                    DB::commit();
+                    return view('failure.success');
+                    break;
+                case 'refund':
+                case 'partial_refund':
+                    TKavlingTransactionTab::where('order_id', $request->order_id)->update([
+                        'm_status_id' => 10
+                    ]);
+                    break;
+            }
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            abort(500, $th->getMessage());
+        }
     }
 
     /**
