@@ -13,6 +13,7 @@ class TKavlingTab extends Model
         'title',
         'size',
         'price',
+        'down_payment',
         'address',
     ];
 

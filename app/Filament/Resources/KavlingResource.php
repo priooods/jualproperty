@@ -43,6 +43,7 @@ class KavlingResource extends Resource
                     ->getOptionLabelUsing(fn($value): ?string => MTypeKavlingTab::find($value)?->title),
                 TextInput::make('size')->label('Ukuran Kavling')->placeholder('Masukan Ukuran Kavling')->numeric()->suffix('m2')->required(),
                 TextInput::make('price')->label('Harga Kavling')->placeholder('Masukan Harga Kavling')->numeric()->prefix('Rp.')->required(),
+            TextInput::make('down_payment')->label('Jumlah DP')->placeholder('Masukan Jumlah DP')->numeric()->prefix('Rp.')->required(),
                 Textarea::make('address')->label('Alamat Detail Kavling')->placeholder('Alamat Detail Kavling')->autosize()->required(),
                 Section::make('Detail Kavling')->schema([
                     Repeater::make('description')->label('Lengkapi Deskripsi Kavling')
@@ -99,6 +100,7 @@ class KavlingResource extends Resource
                 TextColumn::make('m_type_kavling_tabs_id')->label('type')->badge()->getStateUsing(fn($record) => $record->type ? $record->type->title : 'Tidak Ada'),
                 TextColumn::make('size')->label('Ukuran')->suffix(' m2'),
                 TextColumn::make('price')->label('Harga')->prefix('Rp. '),
+            TextColumn::make('down_payment')->label('DP')->prefix('Rp. '),
                 TextColumn::make('address')->label('Alamat'),
                 TextColumn::make('m_status_tabs_id')->label('Status')->badge()->color(fn(string $state): string => match ($state) {
                     'DRAFT' => 'gray',

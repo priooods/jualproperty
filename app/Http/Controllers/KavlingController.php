@@ -1,0 +1,149 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\TKavlingTab;
+use App\Models\TKavlingTransactionTab;
+use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
+class KavlingController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        $list = TKavlingTab::with([
+            'status_kavling',
+            'status',
+            'type',
+            'description',
+            'images',
+        ])->get();
+        return view('pages.kavling', [
+            'data' => $list
+        ]);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        //
+    }
+
+    public function payment($id, Request $request){
+        $request->validate([
+            'nama_lengkap' => 'required',
+            'nomor_ktp' => 'required',
+            'nomor_kk' => 'required',
+            'nomor_hp' => 'required',
+            'email' => 'required|email',
+            'upload_ktp' => 'required|image|mimes:jpg,jpeg,png|max:5048',
+        ], [
+            'nama_lengkap.required' => 'Silakan masukan Nama Lengkap Anda.',
+            'nomor_ktp.required' => 'Silakan masukan Nomor KTP Anda.',
+            'nomor_kk.required' => 'Silakan masukan Nomor KK Anda.',
+            'nomor_hp.required' => 'Silakan masukan Nomor Hp Aktif Anda.',
+            'email.required' => 'Silakan masukan Email Anda.',
+            'email.email' => 'Email anda tidak valid.',
+            'upload_ktp.required' => 'Silakan unggah foto KTP Anda.',
+            'upload_ktp.image' => 'File yang diunggah harus berupa gambar.',
+            'upload_ktp.mimes' => 'Format gambar harus jpg, jpeg, atau png.',
+            'upload_ktp.max' => 'Ukuran gambar tidak boleh lebih dari 5MB.',
+        ]);
+
+        try {
+            DB::beginTransaction();
+            \Midtrans\Config::$serverKey = config('midtrans.server_key');
+            \Midtrans\Config::$isProduction = false;
+            $orderId = 'ORDER-' . uniqid();
+            $params = [
+                'transaction_details' => [
+                    'order_id' => 'ORDER-' . uniqid(),
+                    'gross_amount' => $request->down_payment,
+                ],
+                'customer_details' => [
+                    'first_name' => $request->nama_lengkap,
+                    'phone' => $request->nomor_hp,
+                    'email' => $request->email,
+                ]
+            ];
+            TKavlingTransactionTab::create([
+                'order_id' => $orderId,
+                'name' => $request->nama_lengkap,
+                'nomor_ktp' => $request->nomor_ktp,
+                'nomor_kk' => $request->nomor_kk,
+                'nomor_hp' => $request->nomor_hp,
+                'email' => $request->email,
+                'upload_ktp' => $request->nomor_hp,
+                't_kavling_tabs_id' => $id,
+            ]);
+            DB::commit();
+
+            $snapToken = \Midtrans\Snap::createTransaction($params)->redirect_url;
+            return redirect($snapToken);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            abort(500, $th->getMessage());
+        }
+    }
+
+    public function callback(Request $request){
+        dd($request->all());
+        return response()->json($request->all());
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+        $detail = TKavlingTab::find($id);
+        if(isset($detail)) redirect('/');
+        return view('pages.detail', [
+            'data' => $detail
+        ]);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        $detail = TKavlingTab::find($id);
+        $agent = User::where('m_user_role_tabs_id',3)->get();
+        if (isset($detail)) redirect('/');
+        return view('pages.form', [
+            'data' => $detail,
+            'agent' => $agent
+        ]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        //
+    }
+}

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('title');
             $table->integer('size');
             $table->string('price');
+            $table->string('down_payment');
             $table->string('address');
             $table->timestamps();
             $table->foreign('m_status_tabs_transaction_id')->references('id')->on('m_status_tabs');
