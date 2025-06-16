@@ -24,6 +24,11 @@ return new class extends Migration
                 ['title' => 'POSTED'],
                 ['title' => 'TERSEDIA'],
                 ['title' => 'TIDAK TERSEDIA'],
+                ['title' => 'PENDING'],
+                ['title' => 'PAID'],
+                ['title' => 'FAILURE'],
+                ['title' => 'REFUNDED'],
+                ['title' => 'DIPESAN'],
             )
         );
     }

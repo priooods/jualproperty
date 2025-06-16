@@ -14,22 +14,20 @@ return new class extends Migration
         Schema::create('t_kavling_transaction_tabs', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('t_kavling_tabs_id');
-            $table->string('down_payment_paid');
-            $table->string('fullname');
-            $table->string('ktp_no');
-            $table->string('kk_no');
-            $table->string('address');
-            $table->string('phone');
+            $table->string('order_id');
+            $table->string('payment');
+            $table->string('name');
             $table->string('email');
-            $table->string('notes');
-            $table->unsignedBigInteger('marketing_users_id');
-            $table->string('path_ktp');
-            $table->tinyInteger('use_payment_gateway')->default(0);
-            $table->unsignedInteger('m_status_tabs_id');
+            $table->string('upload_ktp');
+            $table->string('nomor_ktp');
+            $table->string('nomor_kk');
+            $table->string('nomor_hp');
+            $table->integer('agent_id');
+            $table->integer('m_status_id');
+            $table->text('catatan');
+            $table->text('noted');
             $table->timestamps();
             $table->foreign('t_kavling_tabs_id')->references('id')->on('t_kavling_tabs')->cascadeOnDelete();
-            $table->foreign('marketing_users_id')->references('id')->on('users')->cascadeOnDelete();
-            $table->foreign('m_status_tabs_id')->references('id')->on('m_status_tabs')->cascadeOnDelete();
         });
     }
 
