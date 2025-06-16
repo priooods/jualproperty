@@ -19,4 +19,14 @@ class TKavlingTransactionTab extends Model
         'upload_ktp',
         't_kavling_tabs_id',
     ];
+
+    public function kavling()
+    {
+        return $this->hasOne(TKavlingTab::class, 'id', 't_kavling_tabs_id');
+    }
+
+    public function status()
+    {
+        return $this->hasOne(MStatusTab::class, 'id', 'm_status_id');
+    }
 }

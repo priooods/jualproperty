@@ -9,11 +9,10 @@ use Filament\Resources\Pages\ListRecords;
 class ListTransaksis extends ListRecords
 {
     protected static string $resource = TransaksiResource::class;
-
+    protected ?string $heading = 'Data Transaction Kavling';
+    protected static ?string $title = 'Transaction Kavling';
     protected function getHeaderActions(): array
     {
-        return [
-            Actions\CreateAction::make(),
-        ];
+        return [];
     }
 }

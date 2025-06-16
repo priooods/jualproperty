@@ -91,6 +91,7 @@ class KavlingController extends Controller
                 'payment' => $request->down_payment,
                 'payment' => $request->down_payment,
                 'agent_id' => isset($request->agent_id) ? $request->agent_id : null,
+                'catatan' => isset($request->catatan) ? $request->catatan : null,
                 't_kavling_tabs_id' => $id,
             ]);
             DB::commit();
@@ -109,9 +110,15 @@ class KavlingController extends Controller
             switch ($request->transaction_status) {
                 case 'capture':
                 case 'settlement':
-                    TKavlingTransactionTab::where('order_id', $request->order_id)->update([
-                        'm_status_id' => 8
-                    ]);
+                    $trasaction = TKavlingTransactionTab::where('order_id', $request->order_id)->first();
+                    if (isset($trasaction)) {
+                        $trasaction->update([
+                            'm_status_id' => 8
+                        ]);
+                        TKavlingTab::where('id', $trasaction->t_kavling_tabs_id)->update([
+                            'm_status_tabs_transaction_id' => 11
+                        ]);
+                    }
                     DB::commit();
                     return view('invoice.success');
                     break;
@@ -127,9 +134,15 @@ class KavlingController extends Controller
                     break;
                 case 'refund':
                 case 'partial_refund':
-                    TKavlingTransactionTab::where('order_id', $request->order_id)->update([
-                        'm_status_id' => 10
-                    ]);
+                    $trasaction = TKavlingTransactionTab::where('order_id', $request->order_id)->first();
+                    if (isset($trasaction)) {
+                        $trasaction->update([
+                            'm_status_id' => 10
+                        ]);
+                        TKavlingTab::where('id', $trasaction->t_kavling_tabs_id)->update([
+                            'm_status_tabs_transaction_id' => 5
+                        ]);
+                    }
                     break;
             }
         } catch (\Throwable $th) {

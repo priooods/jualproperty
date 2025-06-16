@@ -95,13 +95,18 @@ class KavlingResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->query(
+                TKavlingTab::orderBy('id', 'desc')
+            )
             ->columns([
                 TextColumn::make('title')->label('Nama Kavling'),
                 TextColumn::make('m_type_kavling_tabs_id')->label('type')->badge()->getStateUsing(fn($record) => $record->type ? $record->type->title : 'Tidak Ada'),
                 TextColumn::make('size')->label('Ukuran')->suffix(' m2'),
                 TextColumn::make('price')->label('Harga')->prefix('Rp. '),
             TextColumn::make('down_payment')->label('DP')->prefix('Rp. '),
-                TextColumn::make('address')->label('Alamat'),
+            TextColumn::make('address')->label('Alamat')->extraHeaderAttributes([
+                'class' => 'w-32'
+            ])->wrap(),
                 TextColumn::make('m_status_tabs_id')->label('Status')->badge()->color(fn(string $state): string => match ($state) {
                     'DRAFT' => 'gray',
                     'AKTIF' => 'success',
@@ -117,6 +122,7 @@ class KavlingResource extends Resource
                     'POSTED' => 'success',
                     'TERSEDIA' => 'success',
                     'TIDAK TERSEDIA' => 'danger',
+                'DIPESAN' => 'danger',
                 })->getStateUsing(fn($record) => $record->status_kavling ? $record->status_kavling->title : 'Tidak Ada')
 
             ])
