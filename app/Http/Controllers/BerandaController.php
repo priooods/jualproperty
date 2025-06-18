@@ -12,15 +12,28 @@ class BerandaController extends Controller
      */
     public function index()
     {
-        $list = TKavlingTab::where('m_status_tabs_transaction_id',5)->with([
-            'status_kavling',
-            'status',
-            'type',
-            'description',
-            'images',
-        ])->get();
+        $list = TKavlingTab::where('m_status_tabs_transaction_id', 5)
+            ->where('m_status_tabs_id', 4)
+            ->with([
+                'status_kavling',
+                'status',
+                'type',
+                'description',
+                'images',
+            ])
+            ->get();
+        $listAll = TKavlingTab::where('m_status_tabs_id', 4)
+            ->with([
+                'status_kavling',
+                'status',
+                'type',
+                'description',
+                'images',
+            ])
+            ->get();
         return view('pages.beranda' , [
-            'data' => $list
+            'data' => $list,
+            'list' => $listAll,
         ]);
     }
 

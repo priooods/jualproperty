@@ -192,4 +192,14 @@ class KavlingController extends Controller
     {
         //
     }
+
+    public function informasi()
+    {
+        return view('pages.informasi');
+    }
+
+    public function tentang()
+    {
+        return view('pages.tentang');
+    }
 }

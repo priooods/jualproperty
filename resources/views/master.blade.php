@@ -30,8 +30,8 @@
                 </div>
                 <nav class="hidden md:flex space-x-6">
                 <a href="/kavling" class="text-gray-700 hover:text-blue-600">Kavling</a>
-                <a href="#" class="text-gray-700 hover:text-blue-600">Informasi</a>
-                <a href="#" class="text-gray-700 hover:text-blue-600">Tentang Kami</a>
+                <a href="/informasi" class="text-gray-700 hover:text-blue-600">Informasi</a>
+                <a href="/tentang" class="text-gray-700 hover:text-blue-600">Tentang Kami</a>
                 </nav>
                 <div class="md:hidden">
                 <button id="menu-btn" class="focus:outline-none">

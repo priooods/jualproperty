@@ -42,10 +42,12 @@
                     <p class="text-xl text-red-900">{{$data->size}}.00 m&sup2;</p>
                 </div>
             </div>
-            <div class="grid grid-cols-2 gap-10 mt-12">
-                <a href="{{$data->id}}/edit" class="bg-green-700 text-white text-md uppercase text-center py-2 font-semibold">Pesan Sekarang</a>
-                <a  href="https://wa.me/6281234567890?text=Halo%2C%20saya%20tertarik%20dengan%20produk%20Anda" target="_blank" class="bg-green-700 text-white text-md uppercase text-center py-2  font-semibold">Tanya Via WhatsApp</a>
-            </div>
+            @if ($data->m_status_tabs_transaction_id == 5)
+                <div class="grid grid-cols-2 gap-10 mt-12">
+                    <a href="{{$data->id}}/edit" class="bg-green-700 text-white text-md uppercase text-center py-2 font-semibold">Pesan Sekarang</a>
+                    <a  href="https://wa.me/6281234567890?text=Halo%2C%20saya%20tertarik%20dengan%20produk%20Anda" target="_blank" class="bg-green-700 text-white text-md uppercase text-center py-2  font-semibold">Tanya Via WhatsApp</a>
+                </div>
+            @endif
         </section>
     </section>
     <script>

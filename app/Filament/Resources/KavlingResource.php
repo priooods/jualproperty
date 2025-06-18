@@ -139,7 +139,7 @@ class KavlingResource extends Resource
                                 'm_status_tabs_id' => 4,
                             ]);
                         })
-                        ->visible(fn($record) => ($record->m_status_tabs_id === 1 || $record->m_status_tabs_id === 4))
+                    ->visible(fn($record) => ($record->m_status_tabs_id === 1))
                         ->icon('heroicon-o-check')
                         ->color('success')
                         ->requiresConfirmation()
