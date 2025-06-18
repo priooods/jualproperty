@@ -3,6 +3,7 @@
     <section>
         <div class="grid grid-cols-10 gap-1">
             @isset($data)
+                @if (count($data) > 0)
                 @foreach ($data as $item)
                     @if ($item->status_kavling->id == 5)
                         <a class="bg-green-700 text-white font-semibold px-4 py-2 text-center" href="kavling/{{$item->id}}">
@@ -16,6 +17,9 @@
                         </div>
                     @endif
                 @endforeach
+                @else
+                    <p class="text-center text-sm">-- Tidak Ada informasi Kavling Tersedia Yang Dapat Dipesan --</p>
+                @endif
             @endisset
         </div>
     </section>
