@@ -29,7 +29,7 @@
                   <a href="/">Penjualan Property</a>
                 </div>
                 <nav class="hidden md:flex space-x-6">
-                <a href="/" class="text-gray-700 hover:text-blue-600">Kavling</a>
+                <a href="/kavling" class="text-gray-700 hover:text-blue-600">Kavling</a>
                 <a href="/informasi" class="text-gray-700 hover:text-blue-600">Informasi</a>
                 <a href="/tentang" class="text-gray-700 hover:text-blue-600">Tentang Kami</a>
                 </nav>
@@ -45,7 +45,7 @@
         </div>
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden px-4 pb-4 space-y-2">
-            <a href="/" class="text-gray-700 hover:text-blue-600">Kavling</a>
+            <a href="/kavling" class="text-gray-700 hover:text-blue-600">Kavling</a>
             <a href="/informasi" class="text-gray-700 hover:text-blue-600">Informasi</a>
             <a href="/informasi" class="text-gray-700 hover:text-blue-600">Tentang Kami</a>
         </div>
