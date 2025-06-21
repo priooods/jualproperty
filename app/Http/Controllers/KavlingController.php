@@ -100,7 +100,7 @@ class KavlingController extends Controller
             return redirect($snapToken);
         } catch (\Throwable $th) {
             DB::rollBack();
-            abort(500, $th->getMessage());
+            abort(400, $th->getMessage());
         }
     }
 
