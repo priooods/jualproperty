@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('nomor_ktp');
             $table->string('nomor_kk');
             $table->string('nomor_hp');
-            $table->integer('agent_id');
+            $table->integer('agent_id')->nullable();
             $table->integer('m_status_id');
             $table->text('catatan');
             $table->text('noted');
