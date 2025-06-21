@@ -24,8 +24,8 @@ return new class extends Migration
             $table->string('nomor_hp');
             $table->integer('agent_id')->nullable();
             $table->integer('m_status_id')->default(7);
-            $table->text('catatan');
-            $table->text('noted');
+            $table->text('catatan')->nullable();
+            $table->text('noted')->nullable();
             $table->timestamps();
             $table->foreign('t_kavling_tabs_id')->references('id')->on('t_kavling_tabs')->cascadeOnDelete();
         });
