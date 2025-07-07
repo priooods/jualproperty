@@ -8,12 +8,20 @@
             <p class="text-sm text-gray-600 mb-8">
                 Penjualan Property adalah sebuah website yang memberikan kemudahan bagi Anda yang ingin melakukan investasi di bidang tanah. Karena kami menyediakan berbagai lahan tanah kavling di berbagai daerah, yang dapat anda miliki dengan cara cukup mencicil dengan nominal yang sudah ditentukan
             </p>
-            <a href="https://www.instagram.com" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                class="inline-block bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 text-white px-6 py-2 rounded-full font-semibold shadow-md hover:brightness-110 transition duration-300">
-                Kunjungi Instagram Kami
-            </a>
+            <div class="flex gap-x-5">
+                <a href="https://www.instagram.com/bantarwangiresidence?igsh=eHYycGRtaGU3ejVq" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    class="inline-block bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 text-white px-6 py-2 rounded-full font-semibold shadow-md hover:brightness-110 transition duration-300">
+                    Kunjungi Instagram Kami
+                </a>
+                <a href="https://maps.app.goo.gl/SYhScisQZCkKoM33A" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    class="inline-block bg-green-800 text-white px-6 py-2 rounded-full font-semibold shadow-md hover:brightness-110 transition duration-300">
+                    Lihat di Maps
+                </a>
+            </div>
 
         </div>
     </section>
