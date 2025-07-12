@@ -8,10 +8,10 @@
             </h1>
             <div id="main-content" class="text-gray-700 leading-relaxed">
                 <p class="mb-4">
-                    Kami menyediakan berbagai kavling di beberapa daerah di pulau Kalimantan, dan berikut informasi sementara wilayah mana saja yang terdapat lahan kavling kami.
+                    Kami menyediakan berbagai kavling di beberapa daerah di Provinsi Banten, dan berikut informasi sementara wilayah mana saja yang terdapat lahan kavling kami.
                 </p>
                 <ul class="list-disc list-inside ml-4 space-y-1">
-                    <li>Banten</li>
+                    <li>Kota Serang</li>
                 </ul>
                 <p class="mt-6 text-sm text-gray-600">
                     Nama-nama lokasi tersebut di atas adalah lokasi yang tersedia sementara, namun kedepannya kami akan menampilkan seluruh wilayah di Indonesia.

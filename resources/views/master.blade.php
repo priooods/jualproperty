@@ -26,7 +26,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center py-4">
                 <div class="text-2xl font-bold text-blue-600">
-                  <a href="/">Penjualan Property</a>
+                  <a href="/">Bantarwangi Hills Residence</a>
                 </div>
                 <nav class="hidden md:flex space-x-6">
                 <a href="/kavling" class="text-gray-700 hover:text-blue-600">Kavling</a>
@@ -51,7 +51,7 @@
         </div>
     </header>
 
-    <div class="max-w-7xl mx-auto px-8 py-32 min-h-screen">
+    <div class="max-w-7xl mx-auto px-8 pt-20 pb-32 min-h-screen">
         @yield('main')
     </div>
 

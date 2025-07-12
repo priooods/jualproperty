@@ -12,6 +12,11 @@ class BerandaController extends Controller
      */
     public function index()
     {
+        $imageList = array(
+            ['title' => 'Bantarwangi Residence Hills', 'path' => 'images/kav1.jpg'],
+            ['title' => 'Kavling di tengah kota Serang', 'path' => 'images/kav2.jpeg'],
+            ['title' => 'Tersedia kavling berbagai ukuran', 'path' => 'images/kav3.jpg'],
+        );
         $list = TKavlingTab::where('m_status_tabs_transaction_id', 5)
             ->where('m_status_tabs_id', 4)
             ->with([
@@ -32,6 +37,7 @@ class BerandaController extends Controller
             ])
             ->get();
         return view('pages.beranda' , [
+            'imageList' => $imageList,
             'data' => $list,
             'list' => $listAll,
         ]);

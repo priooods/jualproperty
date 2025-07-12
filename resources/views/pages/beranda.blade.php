@@ -2,13 +2,23 @@
 @section('main')
     <section>
         <div class="w-full">
-            <h1 class="text-2xl font-bold text-gray-900 leading-tight mb-6">
-                Selamat Datang di Penjualan Property
+            <div id="slider" class="slider-container w-full h-[330px] overflow-hidden">
+                <div id="slider-track" class="slider-track w-full h-full">
+                    @foreach ($imageList as $g)
+                        <div class="slider-item w-full h-full relative">
+                            <img src="{{ asset('storage/' . $g['path']) }}" class="w-full h-full object-cover" alt="Slider Gambar">
+                            <p class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white font-bold text-3xl uppercase">{{$g['title']}}</p>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+            <h1 class="text-2xl font-bold text-gray-900 leading-tight mb-8 mt-20 uppercase text-center">
+                bantarwangi hills residence
             </h1>
-            <p class="text-sm text-gray-600 mb-8">
+            <p class="text-md text-gray-600 mb-8 text-center">
                 Penjualan Property adalah sebuah website yang memberikan kemudahan bagi Anda yang ingin melakukan investasi di bidang tanah. Karena kami menyediakan berbagai lahan tanah kavling di berbagai daerah, yang dapat anda miliki dengan cara cukup mencicil dengan nominal yang sudah ditentukan
             </p>
-            <div class="flex gap-x-5">
+            <div class="flex justify-center gap-x-5">
                 <a href="https://www.instagram.com/bantarwangiresidence?igsh=eHYycGRtaGU3ejVq" 
                     target="_blank" 
                     rel="noopener noreferrer"
@@ -22,14 +32,13 @@
                     Lihat di Maps
                 </a>
             </div>
-
         </div>
     </section>
-    <div class="h-[1px] bg-gray-200 w-full my-16"></div>
+    <div class="h-[1px] bg-gray-200 w-full my-24"></div>
     <section>
         <div class="text-center w-full mb-10">
-            <p class="font-bold text-lg text-red-800">KAVLING TERSEDIA</p>
-            <p class="text-xs">Ini adalah daftar seluruh kavling tersedia dari berbagai kategori, jenis, dan wilayah.</p>
+            <p class="font-bold text-2xl text-red-800">KAVLING TERSEDIA</p>
+            <p class="text-md">Ini adalah daftar seluruh kavling tersedia dari berbagai kategori, jenis, dan wilayah.</p>
         </div>
         @if($data && count($data) > 0)
             <div class="grid grid-cols-4 gap-4">
@@ -66,8 +75,8 @@
     <div class="h-[1px] bg-gray-200 w-full my-16"></div>
     <section>
         <div class="text-center w-full mb-10">
-            <p class="font-bold text-lg text-red-800">SEMUA KAVLING</p>
-            <p class="text-xs">Ini adalah daftar seluruh kavling dari berbagai kategori, jenis, dan wilayah.</p>
+            <p class="font-bold text-2xl text-red-800">SEMUA KAVLING</p>
+            <p class="text-md">Ini adalah daftar seluruh kavling dari berbagai kategori, jenis, dan wilayah.</p>
         </div>
         @isset($data)
             <div class="grid grid-cols-4 gap-4">
@@ -101,14 +110,47 @@
     </section>
     <script>
         const track = document.getElementById('slider-track');
-        const slides = document.querySelectorAll('.slider-item');
-        let index = 0;
-    
+        let slides = document.querySelectorAll('.slider-item');
+        let index = 1;
+
+        // Clone first and last slides
+        const firstClone = slides[0].cloneNode(true);
+        const lastClone = slides[slides.length - 1].cloneNode(true);
+
+        // Tambahkan clone ke DOM
+        track.appendChild(firstClone);
+        track.insertBefore(lastClone, slides[0]);
+
+        // Update slide list
+        slides = document.querySelectorAll('.slider-item');
+
+        // Set posisi awal ke slide 1 (bukan clone)
+        track.style.transform = `translateX(-${index * 100}%)`;
+
+        // Fungsi untuk geser slide
         function autoSlide() {
-          index = (index + 1) % slides.length;
-          track.style.transform = `translateX(-${index * 100}%)`;
+        index++;
+        track.style.transition = 'transform 0.5s ease-in-out';
+        track.style.transform = `translateX(-${index * 100}%)`;
+
+        // Saat mencapai clone terakhir (di paling kanan)
+        track.addEventListener('transitionend', () => {
+            if (slides[index].isEqualNode(firstClone)) {
+            track.style.transition = 'none';
+            index = 1;
+            track.style.transform = `translateX(-${index * 100}%)`;
+            }
+
+            // Saat kembali ke clone pertama (di paling kiri)
+            if (slides[index].isEqualNode(lastClone)) {
+            track.style.transition = 'none';
+            index = slides.length - 2;
+            track.style.transform = `translateX(-${index * 100}%)`;
+            }
+        }, { once: true });
         }
-    
+
+        // Jalankan otomatis setiap 3 detik
         setInterval(autoSlide, 3000); // Ganti slide tiap 3 detik
       </script>
 @endsection
