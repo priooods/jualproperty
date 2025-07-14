@@ -10,23 +10,38 @@ class BerandaController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+        $query = null;
+        if ($request->has('title') && $request->filled('title')) {
+            $query = $request->query('title');
+        }
         $imageList = array(
             ['title' => 'Bantarwangi Residence Hills', 'path' => 'images/kav1.jpg'],
             ['title' => 'Kavling di tengah kota Serang', 'path' => 'images/kav2.jpeg'],
             ['title' => 'Tersedia kavling berbagai ukuran', 'path' => 'images/kav3.jpg'],
         );
-        $list = TKavlingTab::where('m_status_tabs_transaction_id', 5)
-            ->where('m_status_tabs_id', 4)
-            ->with([
-                'status_kavling',
-                'status',
-                'type',
-                'description',
-                'images',
-            ])
-            ->get();
+        if (isset($query)) {
+            $list = TKavlingTab::where('m_status_tabs_transaction_id', 5)->where('title', 'like', '%' . $query . '%')
+                ->where('m_status_tabs_id', 4)
+                ->with([
+                    'status_kavling',
+                    'status',
+                    'type',
+                    'description',
+                    'images',
+                ])->get();
+        } else {
+            $list = TKavlingTab::where('m_status_tabs_transaction_id', 5)
+                ->where('m_status_tabs_id', 4)
+                ->with([
+                    'status_kavling',
+                    'status',
+                    'type',
+                    'description',
+                    'images',
+                ])->get();
+        }
         $listAll = TKavlingTab::where('m_status_tabs_id', 4)
             ->with([
                 'status_kavling',

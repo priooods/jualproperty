@@ -5,6 +5,7 @@ use App\Http\Controllers\KavlingController;
 use Illuminate\Support\Facades\Route;
 
 Route::resource('/', BerandaController::class);
+Route::get('/', [BerandaController::class, 'index'])->name('beranda');
 Route::resource('/kavling', KavlingController::class);
 Route::get('/informasi', [KavlingController::class, 'informasi']);
 Route::get('/tentang', [KavlingController::class, 'tentang']);

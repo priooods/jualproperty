@@ -34,13 +34,29 @@
             </div>
         </div>
     </section>
-    <div class="h-[1px] bg-gray-200 w-full my-24"></div>
+    <div class="h-[1px] bg-gray-200 w-full mt-24 mb-12"></div>
     <section>
+        <div class="w-full mb-14 p-4">
+            <p class="text-gray-700 text-base font-medium mb-4 text-center">Temukan Kavling Idaman Anda Dengan Kami</p>
+            <form action="{{ route('beranda') }}" method="GET" class="flex space-x-2">
+                <input 
+                    type="text" 
+                    name="title" 
+                    placeholder="Masukkan kata kunci..." 
+                    class="flex-1 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+                <button 
+                    type="submit" 
+                    class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
+                Cari Kavling
+                </button>
+            </form>
+        </div>
         <div class="text-center w-full mb-10">
             <p class="font-bold text-2xl text-red-800">KAVLING TERSEDIA</p>
             <p class="text-md">Ini adalah daftar seluruh kavling tersedia dari berbagai kategori, jenis, dan wilayah.</p>
         </div>
-        @if($data && count($data) > 0)
+        @if(isset($data) && count($data) > 0)
             <div class="grid grid-cols-4 gap-4">
                 @foreach ($data as $item)
                     <a class="rounded-lg border border-gray-300 shadow-xl cursor-pointer" href="kavling/{{$item->id}}">
