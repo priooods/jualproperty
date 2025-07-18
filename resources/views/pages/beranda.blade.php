@@ -2,7 +2,7 @@
 @section('main')
     <section>
         <div class="w-full">
-            <div id="slider" class="slider-container w-full h-[330px] overflow-hidden">
+            <div id="slider" class="slider-container w-full h-[380px] overflow-hidden">
                 <div id="slider-track" class="slider-track w-full h-full">
                     @foreach ($imageList as $g)
                         <div class="slider-item w-full h-full relative">
@@ -12,32 +12,73 @@
                     @endforeach
                 </div>
             </div>
-            <h1 class="text-2xl font-bold text-gray-900 leading-tight mb-8 mt-20 uppercase text-center">
-                bantarwangi hills residence
-            </h1>
-            <p class="text-md text-gray-600 mb-8 text-center">
-                Penjualan Property adalah sebuah website yang memberikan kemudahan bagi Anda yang ingin melakukan investasi di bidang tanah. Karena kami menyediakan berbagai lahan tanah kavling di berbagai daerah, yang dapat anda miliki dengan cara cukup mencicil dengan nominal yang sudah ditentukan
-            </p>
-            <div class="flex justify-center gap-x-5">
-                <a href="https://www.instagram.com/bantarwangiresidence?igsh=eHYycGRtaGU3ejVq" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    class="inline-block bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 text-white px-6 py-2 rounded-full font-semibold shadow-md hover:brightness-110 transition duration-300">
-                    Kunjungi Instagram Kami
-                </a>
-                <a href="https://maps.app.goo.gl/SYhScisQZCkKoM33A" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    class="inline-block bg-green-800 text-white px-6 py-2 rounded-full font-semibold shadow-md hover:brightness-110 transition duration-300">
-                    Lihat di Maps
-                </a>
+            
+            <div class="flex md:flex-row flex-col gap-x-9 gap-y-4 mt-32">
+                <div>
+                    <h1 class="text-5xl text-gray-900 leading-tight mt-20 uppercase font-bold" style="font-family: 'Inter', sans-serif;">
+                        Cari, Pilih, Miliki Kavling Tanah Lebih Mudah
+                    </h1>
+                    <div class="flex justify-start gap-x-5 mt-10">
+                        <a href="https://www.instagram.com/bantarwangiresidence?igsh=eHYycGRtaGU3ejVq" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            class="inline-block bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 text-white px-6 py-2 rounded-full font-semibold shadow-md hover:brightness-110 transition duration-300">
+                            Kunjungi Instagram Kami
+                        </a>
+                        <a href="https://maps.app.goo.gl/SYhScisQZCkKoM33A" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            class="inline-block bg-green-800 text-white px-6 py-2 rounded-full font-semibold shadow-md hover:brightness-110 transition duration-300">
+                            Lihat di Maps
+                        </a>
+                    </div>
+                </div>
+                <img src="{{ asset('storage/images/get.png') }}" class="w-92 h-92 object-cover md:ml-auto" alt="img">
+            </div>
+            <div class="mt-36">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+
+                    <!-- Kotak 1: Kavling Berkualitas -->
+                    <div class="border border-gray-100 rounded-xl shadow-md p-6 hover:shadow-lg transition">
+                        <div class="text-blue-600 text-5xl mb-4">
+                            📍
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Kavling Berkualitas</h3>
+                        <p class="text-gray-600 text-sm">
+                            Lokasi strategis, legalitas jelas, dan siap bangun. Investasi aman untuk masa depan Anda!
+                        </p>
+                    </div>
+
+                    <!-- Kotak 2: Pembayaran Fleksibel -->
+                    <div class="border border-gray-100 rounded-xl shadow-md p-6 hover:shadow-lg transition">
+                        <div class="text-blue-600 text-5xl mb-4">
+                            💳
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Pembayaran Fleksibel</h3>
+                        <p class="text-gray-600 text-sm">
+                            Cicilan ringan, tanpa bunga, dan dapat disesuaikan dengan kemampuan Anda. Tanpa beban!
+                        </p>
+                    </div>
+
+                    <!-- Kotak 3: Proses Digital -->
+                    <div class="border border-gray-100 rounded-xl shadow-md p-6 hover:shadow-lg transition">
+                        <div class="text-blue-600 text-5xl mb-4">
+                            📲
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Proses Digital</h3>
+                        <p class="text-gray-600 text-sm">
+                            Dari pemesanan hingga pembayaran, semua bisa dilakukan secara online. Praktis dan efisien!
+                        </p>
+                    </div>
+
+                </div>
             </div>
         </div>
     </section>
-    <div class="h-[1px] bg-gray-200 w-full mt-24 mb-12"></div>
+    <div class="h-[1px] w-full my-20"></div>
     <section>
         <div class="w-full mb-14 p-4">
-            <p class="text-gray-700 text-base font-medium mb-4 text-center">Temukan Kavling Idaman Anda Dengan Kami</p>
+            <p class="text-gray-800 text-base font-medium mb-4 text-center">Temukan Kavling Idaman Anda Dengan Kami</p>
             <form action="{{ route('beranda') }}" method="GET" class="flex space-x-2">
                 <input 
                     type="text" 
@@ -124,6 +165,42 @@
             </div>
         @endisset
     </section>
+    {{-- <section class="mt-32">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center text-gray-800 mb-8">Kata Mereka</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
+
+            <!-- Testimoni 1 -->
+            <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200">
+                <p class="text-gray-600 italic mb-4">
+                "Saya sempat ragu beli kavling online, tapi ternyata prosesnya cepat, lokasi sesuai, dan legalitasnya aman. Terima kasih tim Solusi Digital!"
+                </p>
+                <div class="font-semibold text-gray-800">Andi Prasetyo</div>
+                <div class="text-sm text-gray-500">Jakarta Selatan</div>
+            </div>
+
+            <!-- Testimoni 2 -->
+            <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200">
+                <p class="text-gray-600 italic mb-4">
+                "Pembayaran bisa dicicil tanpa ribet, cocok banget buat saya yang baru mulai investasi properti. Highly recommended!"
+                </p>
+                <div class="font-semibold text-gray-800">Rina Widjaja</div>
+                <div class="text-sm text-gray-500">Depok</div>
+            </div>
+
+            <!-- Testimoni 3 -->
+            <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200">
+                <p class="text-gray-600 italic mb-4">
+                "Semua bisa diurus lewat HP aja. Nggak perlu ke kantor, tapi tetap jelas dan profesional. Sangat membantu!"
+                </p>
+                <div class="font-semibold text-gray-800">Yoga Mahendra</div>
+                <div class="text-sm text-gray-500">Bandung</div>
+            </div>
+
+            </div>
+        </div>
+    </section> --}}
+
     <script>
         const track = document.getElementById('slider-track');
         let slides = document.querySelectorAll('.slider-item');
